@@ -49,10 +49,10 @@ export default function Home() {
           <IconLogs size={20} />
           Changelog
         </a>
-        <a href="" target="_blank" rel="noopener noreferrer">
+        {/* <a href="" target="_blank" rel="noopener noreferrer">
           <IconDownload size={20} />
           Download the Add-On →
-        </a>
+        </a> */}
       </footer>
     </div>
   );
