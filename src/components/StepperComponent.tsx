@@ -3,7 +3,21 @@
 import { Stepper, Image } from "@mantine/core";
 import { getSpecIcon } from "@/utils/imageUtils";
 import { GameModeType } from "@/types/GameMode";
-import { IconCircleX } from "@tabler/icons-react";
+import {
+  IconCircleX,
+  IconCompassFilled,
+  IconCrosshair,
+  IconEyeglass,
+  IconFriends,
+  IconReceipt,
+  IconReceipt2,
+  IconReceiptFilled,
+  IconThumbDown,
+  IconThumbDownFilled,
+  IconThumbUp,
+  IconThumbUpFilled,
+  IconZoom,
+} from "@tabler/icons-react";
 import { useSetupContext } from "@/hooks/useSetupState";
 import { SetupSteps } from "@/types/SetupSteps";
 
@@ -55,22 +69,27 @@ export default function StepperComponent() {
         description="Choose teamates classes and specializations"
         color={disableTeammateStep ? "red" : "blue"}
         disabled={disableTeammateStep}
-        completedIcon={
-          disableTeammateStep ? <IconCircleX size={40} /> : undefined
-        }
+        completedIcon={<IconThumbUp size={24} />}
       />
 
       <Stepper.Step
         label="Opponents"
         description="Choose opponent classes and specializations"
         color="blue"
+        completedIcon={<IconThumbDown size={24} />}
       />
       <Stepper.Step
         label="Review"
         description="Confirm your setup and begin"
         color="blue"
+        completedIcon={<IconZoom size={24} />}
       />
-      <Stepper.Step label="Kill Target" description="Completed" color="blue" />
+      <Stepper.Step
+        label="Kill Target"
+        description="Completed"
+        color="blue"
+        progressIcon={<IconCrosshair size={24} />}
+      />
     </Stepper>
   );
 }

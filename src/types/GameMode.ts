@@ -15,20 +15,18 @@ export type GameMode = {
   maxOpponents: number;
 };
 
-// GameModeData.ts - array for UI
-export const GAME_MODES = [
-  {
-    value: GameModeType.DUO,
-    label: "2v2",
-    icon: IconUsers,
-    maxTeammates: 1,
-    maxOpponents: 2,
-  },
-  {
-    value: GameModeType.TRIO,
-    label: "3v3",
-    icon: IconUsersGroup,
-    maxTeammates: 2,
-    maxOpponents: 3,
-  },
-];
+export const GAME_MODE_DUO = {
+  value: GameModeType.DUO,
+  label: "2v2",
+  icon: IconUsers,
+  maxTeammates: 1,
+  maxOpponents: 2,
+};
+
+export const GAME_MODE_TRIO = {
+  value: GameModeType.TRIO,
+  label: "3v3",
+  icon: IconUsersGroup,
+  maxTeammates: 2,
+  maxOpponents: 3,
+};

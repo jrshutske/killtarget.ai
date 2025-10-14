@@ -37,7 +37,11 @@ const setupReducer = (state: SetupState, action: Action): SetupState => {
       return { ...state, active: action.payload };
 
     case "SET_GAME_MODE":
-      return { ...INITIAL_STATE, gameMode: action.payload };
+      return {
+        ...INITIAL_STATE,
+        gameMode: action.payload,
+        active: SetupSteps.ClassSelection,
+      };
 
     case "UPDATE_PLAYER":
       return { ...state, player: action.payload };
@@ -88,14 +92,14 @@ export const useSetupState = () => {
     () => ({
       // Step completion status
       isStepComplete: {
-        [SetupSteps.GameMode]: !!state.gameMode,
+        [SetupSteps.GameMode]: false,
         [SetupSteps.ClassSelection]: !!state.player,
         [SetupSteps.TeammateSelection]:
           state.teammates.length === (state.gameMode?.maxTeammates ?? 0),
         [SetupSteps.OpponentSelection]:
           state.opponents.length === (state.gameMode?.maxOpponents ?? 0),
         [SetupSteps.ReviewSelection]: true, // Always complete once reached
-        [SetupSteps.KillTarget]: true, // Always complete once reached
+        [SetupSteps.KillTarget]: false, // Always complete once reached
       },
     }),
     [state]

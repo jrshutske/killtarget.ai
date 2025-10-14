@@ -14,16 +14,14 @@ export function ThemeToggle() {
   }, []);
 
   return (
-    <div style={{ position: "fixed", bottom: "20px", right: "20px" }}>
-      <Button
-        className={styles.themeToggle}
-        onClick={() => toggleColorScheme()}
-        variant="default"
-        size="lg"
-        aria-label="Toggle color scheme"
-      >
-        {mounted ? colorScheme === "dark" ? <IconSun /> : <IconMoon /> : null}
-      </Button>
-    </div>
+    <Button
+      className={styles.themeToggle}
+      onClick={() => toggleColorScheme()}
+      variant="default"
+      size="lg"
+      aria-label="Toggle color scheme"
+    >
+      {mounted ? colorScheme === "dark" ? <IconSun /> : <IconMoon /> : null}
+    </Button>
   );
 }

@@ -54,3 +54,56 @@
   overflow-y: auto;
   overflow-x: hidden;
 }
+
+.titleMobile {
+  /* Hide on desktop, show on mobile */
+  display: none;
+}
+
+.imageContainer {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 100px);
+  overflow: hidden;
+}
+
+.hoverableImage {
+  flex: 1;
+  height: 100%;
+  transition: transform 0.3s ease, z-index 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.hoverableImage:hover {
+  transform: scale(1.1);
+  z-index: 10;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.imageWrapper {
+  position: relative;
+  flex: 1;
+  height: 50%;
+  overflow: hidden;
+}
+
+.imageWrapper .hoverableImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.imageOverlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 4rem;
+  font-weight: 900;
+  color: white;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+  pointer-events: none;
+  z-index: 2;
+  letter-spacing: 0.1em;
+}

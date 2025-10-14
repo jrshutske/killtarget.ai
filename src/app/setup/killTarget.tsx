@@ -36,7 +36,7 @@ export default function KillTarget() {
           />
         </Grid.Col>
       </Grid>
-      <Grid mx="auto" maw={1000} justify="center">
+      <Grid mx="auto" maw={1000} justify="center" mt="lg">
         <Grid.Col key={state.target.class}>
           <Card>
             <Card.Section inheritPadding>

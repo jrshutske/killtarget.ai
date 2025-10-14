@@ -21,10 +21,10 @@ const agent = createReactAgent({
 // Function to determine kill target in WoW arena
 export async function determineKillTarget(teamData: SetupDataRequest) {
   const teammates = teamData.teammates
-    .map((teammate) => `${teammate.spec} - ${teammate.class}`)
+    .map((teammate) => `${teammate.spec} ${teammate.class}`)
     .join("\n");
   const opponents = teamData.opponents
-    .map((opponent) => `${opponent.spec} - ${opponent.class}`)
+    .map((opponent) => `${opponent.spec} ${opponent.class}`)
     .join("\n");
   const killTargetPrompt = `
     You are an expert World of Warcraft arena strategist. Based on the team composition data provided, determine the optimal kill target.
@@ -64,9 +64,9 @@ export async function determineKillTarget(teamData: SetupDataRequest) {
       * Threat they pose if left alive
       * Why they're the best choice for YOUR specific team composition
       * CRITICAL: The class and spec you mention in the reasoning MUST EXACTLY match the "class" and "spec" fields
-      * Use "Spec - Class" format when referring to the TARGET (e.g., if class="Death Knight" and spec="Unholy", say "Unholy - Death Knight")
+      * Use "Spec Class" format when referring to the TARGET (e.g., if class="Death Knight" and spec="Unholy", say "Unholy Death Knight")
     
-    CONSISTENCY CHECK: If you select class="Monk" and spec="Mistweaver", your reasoning MUST discuss the "Mistweaver - Monk" as the PRIMARY KILL TARGET. You may mention other opponents as CC targets or secondary considerations, but make it clear the Mistweaver - Monk is the one to kill.
+    CONSISTENCY CHECK: If you select class="Monk" and spec="Mistweaver", your reasoning MUST discuss the "Mistweaver Monk" as the PRIMARY KILL TARGET. You may mention other opponents as CC targets or secondary considerations, but make it clear the Mistweaver Monk is the one to kill.
     
     Return EXACTLY this JSON structure with no other text:
     {"class": "class_name", "spec": "spec_name", "reasoning": "detailed explanation about the class_name spec_name target"}
