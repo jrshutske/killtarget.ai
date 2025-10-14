@@ -13,6 +13,7 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import KillTarget from "./killTarget";
 import { SetupContext, useSetupState } from "@/hooks/useSetupState";
 import SubmitButton from "@/components/SubmitButton";
+import Link from "next/link";
 
 // Step titles mapping
 const STEP_TITLES: Record<SetupSteps, string> = {
@@ -62,7 +63,9 @@ export default function Page() {
       >
         <AppShell.Header className={styles.header}>
           <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="xl" />
-          <span className={styles.logoDesktop}>killtarget.ai</span>
+          <span className={styles.logoDesktop}>
+            <Link href="/">killtarget.ai</Link>
+          </span>
           <span className={styles.sectionHeader}>{currentTitle}</span>
         </AppShell.Header>
 

@@ -184,6 +184,16 @@ export default function ChangelogPage() {
           <Text size="sm" mt="xs">
             <strong>License:</strong> GPL-3.0
           </Text>
+          <Text size="sm" mt="xs">
+            <strong>Deployed on:</strong>{" "}
+            <Link
+              href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Vercel
+            </Link>
+          </Text>
         </div>
 
         <div style={{ textAlign: "center", marginTop: "2rem" }}>
