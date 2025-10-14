@@ -2,6 +2,7 @@
   "name": "killtargetai",
   "version": "0.1.0",
   "description": "AI-powered World of Warcraft arena kill target analyzer. Input your team composition and opponents to get strategic recommendations on which enemy to focus, complete with detailed tactical reasoning based on current meta, survivability, and team synergies.",
+  "license": "GPL-3.0",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
