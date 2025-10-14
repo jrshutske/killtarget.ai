@@ -1,0 +1,27 @@
+.container {
+  padding: 1rem 0 0 0;
+  overflow: clip;
+  border-top: 1px solid var(--app-shell-border-color);
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    padding 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.containerHidden {
+  max-height: 0;
+  padding: 0 1rem;
+  opacity: 0;
+  border-color: transparent;
+}
+
+.containerVisible {
+  max-height: 200px;
+  opacity: 1;
+}
+
+.button {
+  width: 10em;
+  margin: 0 auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}

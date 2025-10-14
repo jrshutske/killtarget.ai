@@ -1,0 +1,56 @@
+.header {
+  display: flex;
+  align-items: center;
+}
+
+.header span {
+  font-size: 2rem;
+  font-weight: 600;
+  padding-left: 1rem;
+}
+
+.logoDesktop {
+  /* Show on desktop, hide on mobile */
+  display: block;
+}
+
+.sectionHeader {
+  /* Show on desktop (right side), hide on mobile */
+  margin: 0 0 0 auto;
+  padding-right: 1rem;
+  display: block;
+}
+
+/* Mobile styles - breakpoint matches Mantine's 'sm' (768px) */
+@media (max-width: 767px) {
+  .logoDesktop {
+    display: none;
+  }
+
+  .titleMobile {
+    display: block;
+  }
+
+  .sectionHeader {
+    margin: 0 0 0 auto;
+    padding-right: 1rem;
+    display: block;
+  }
+}
+
+.navbar {
+  padding: 1rem;
+}
+
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 60px);
+  overflow: hidden;
+}
+
+.scrollableArea {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
