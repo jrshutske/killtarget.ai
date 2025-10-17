@@ -14,12 +14,17 @@ export async function POST(request: NextRequest) {
   try {
     const setupData: SetupDataRequest = await request.json();
 
-    // Example: Call your AI service
-    const aiResponse = await determineKillTarget(setupData);
+    const killTarget = await determineKillTarget(setupData);
 
-    return NextResponse.json(aiResponse);
+    console.log("Agent: Kill target returned:", {
+      class: killTarget.class,
+      spec: killTarget.spec,
+      reasoning: killTarget.reasoning,
+    });
+
+    return NextResponse.json(killTarget);
   } catch (error) {
-    console.error("Error processing setup data:", error);
+    console.error("API: Error processing setup data:", error);
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500 }

@@ -5,11 +5,12 @@ import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
  * Can be customized per project needs
  */
 export const defaultConfig: AxiosRequestConfig = {
-  timeout: 10000, // 10 seconds
   headers: {
     "Content-Type": "application/json",
   },
   withCredentials: false,
+  timeout: 120000, // 2 minutes timeout - browsers often have limits around 30-60s
+  timeoutErrorMessage: "Request timed out. Please try again.",
 };
 
 /**

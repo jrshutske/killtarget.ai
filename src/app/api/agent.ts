@@ -72,6 +72,8 @@ export async function determineKillTarget(teamData: SetupDataRequest) {
     {"class": "class_name", "spec": "spec_name", "reasoning": "detailed explanation about the class_name spec_name target"}
   `;
 
+  console.log("Agent: Sending prompt to AI...");
+
   const response = await agent.invoke(
     { messages: [new HumanMessage(killTargetPrompt)] },
     { configurable: { thread_id: "arena_analysis" } }
@@ -80,28 +82,29 @@ export async function determineKillTarget(teamData: SetupDataRequest) {
   const content = response.messages[response.messages.length - 1]
     .content as string;
 
+  console.log("Agent: Raw response received:", content);
+
   try {
+    console.log("Agent: Starting JSON parsing...");
+
     // Try to parse directly first
-    let parsedResponse;
-    try {
-      parsedResponse = JSON.parse(content);
-    } catch {
-      // If direct parse fails, try to extract JSON from the content
-      const jsonMatch = content.match(/\{[\s\S]*\}/);
-      if (jsonMatch) {
-        parsedResponse = JSON.parse(jsonMatch[0]);
-      } else {
-        throw new Error("No JSON object found in response");
-      }
-    }
+    const parsedResponse = JSON.parse(content);
 
     // Validate that class and spec are present
+    console.log("Agent: Validating parsed response fields...");
     if (
       !parsedResponse.class ||
       !parsedResponse.spec ||
       !parsedResponse.reasoning
     ) {
-      throw new Error("Missing required fields in AI response");
+      throw new Error(
+        `Missing required fields in AI response: ${{
+          hasClass: !!parsedResponse.class,
+          hasSpec: !!parsedResponse.spec,
+          hasReasoning: !!parsedResponse.reasoning,
+          parsedResponse,
+        }}`
+      );
     }
 
     // Return as Player object - the AI response should match the Player interface
@@ -111,27 +114,12 @@ export async function determineKillTarget(teamData: SetupDataRequest) {
       reasoning: parsedResponse.reasoning,
     };
 
-    // Validate consistency: check if the class and spec appear in the reasoning
-    const expectedReference = `${killTarget.spec} - ${killTarget.class}`;
-    const alternativeReference = `${killTarget.spec}-${killTarget.class}`;
-    const reasoning = killTarget.reasoning || "";
-    const hasCorrectReference =
-      reasoning.includes(expectedReference) ||
-      reasoning.includes(alternativeReference) ||
-      reasoning.includes(killTarget.spec);
-
-    if (!hasCorrectReference) {
-      console.warn(
-        `Warning: Reasoning may not match selected target.\n` +
-          `Selected: ${expectedReference}\n` +
-          `Reasoning: ${reasoning}`
-      );
-    }
+    console.log("Agent: Kill target created.");
 
     return killTarget;
   } catch (error) {
-    console.error("Failed to parse AI response:", error);
-    console.error("Raw content:", content);
+    console.error("Agent: Failed to parse AI response:", error);
+    console.error("Agent: Raw content that failed to parse:", content);
 
     // Return a fallback or throw an error
     throw new Error(`Failed to parse kill target from AI response: ${error}`);
