@@ -180,10 +180,7 @@ This is free software: you can redistribute it and/or modify it under the terms 
 
 ## 📞 Support
 
-For support, questions, or feature requests:
-
-- Open an issue on GitHub
-- Contact: [your-email@example.com]
+For support, questions, or feature requests open an issue on GitHub
 
 ---
 
