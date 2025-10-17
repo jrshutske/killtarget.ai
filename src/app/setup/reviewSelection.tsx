@@ -1,13 +1,14 @@
-import { Grid, Text } from "@mantine/core";
+import { Button, Grid, Text } from "@mantine/core";
 import IconButton from "@/components/IconButton";
 import SelectionCard, {
   ClassCardImage,
   ClassCardSpecImage,
 } from "@/components/SelectionCard";
 import { useSetupContext } from "@/hooks/useSetupState";
+import styles from "./setup.module.css";
 
 export default function ReviewSelection() {
-  const { state } = useSetupContext();
+  const { state, isStepComplete, submitSetup } = useSetupContext();
   if (
     !state.player ||
     state.teammates.length === 0 ||
@@ -72,6 +73,16 @@ export default function ReviewSelection() {
           </Grid.Col>
         ))}
       </Grid>
+      <Button
+        onClick={submitSetup}
+        loading={state.submitting}
+        disabled={!isStepComplete[state.active]}
+        size="lg"
+        fullWidth
+        className={styles.submitButton}
+      >
+        {state.submitting ? "Processing..." : "Submit"}
+      </Button>
     </>
   );
 }

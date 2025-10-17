@@ -150,7 +150,6 @@ export default function ChangelogPage() {
                 <li>Dynamic icon grids for team compositions</li>
                 <li>Pizza-slice layout for 3-player teams</li>
                 <li>Side-by-side for 2-player teams</li>
-                <li>Single icon for solo players</li>
                 <li>All icons fit within circular stepper indicators</li>
               </ul>
             </div>

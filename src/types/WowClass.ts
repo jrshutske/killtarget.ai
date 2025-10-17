@@ -1,3 +1,5 @@
+import { GAME_MODE_DUO, GAME_MODE_TRIO } from "./GameMode";
+
 export interface WowClass {
   class: string;
   specs: string[];
@@ -84,4 +86,10 @@ export const isValidClass = (className: string): className is ClassName => {
 
 export const isValidSpec = (specName: string): specName is SpecName => {
   return WOW_CLASSES.some((c) => c.specs.includes(specName));
+};
+
+// Game mode validation
+export const isValidGameModeLabel = (gameModeLabel: string): boolean => {
+  const validLabels = [GAME_MODE_DUO.label, GAME_MODE_TRIO.label];
+  return validLabels.includes(gameModeLabel);
 };

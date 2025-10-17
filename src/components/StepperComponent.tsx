@@ -2,24 +2,14 @@
 
 import { Stepper, Image } from "@mantine/core";
 import { getSpecIcon } from "@/utils/imageUtils";
-import { GameModeType } from "@/types/GameMode";
-import {
-  IconCircleX,
-  IconCompassFilled,
-  IconCrosshair,
-  IconEyeglass,
-  IconFriends,
-  IconReceipt,
-  IconReceipt2,
-  IconReceiptFilled,
-  IconThumbDown,
-  IconThumbDownFilled,
-  IconThumbUp,
-  IconThumbUpFilled,
-  IconZoom,
-} from "@tabler/icons-react";
 import { useSetupContext } from "@/hooks/useSetupState";
 import { SetupSteps } from "@/types/SetupSteps";
+import {
+  IconCrosshair,
+  IconThumbDown,
+  IconThumbUp,
+  IconZoom,
+} from "@tabler/icons-react";
 
 export default function StepperComponent() {
   const { state, isStepComplete, setActive } = useSetupContext();
@@ -34,7 +24,6 @@ export default function StepperComponent() {
     setActive(step);
   }
 
-  const disableTeammateStep = state.gameMode?.value === GameModeType.SOLO;
   return (
     <Stepper
       active={state.active}
@@ -43,12 +32,12 @@ export default function StepperComponent() {
     >
       <Stepper.Step
         label="Game Mode"
-        description="Choose Solo Shuffle, or Arena"
+        description="Choose Arena Game Mode"
         color="blue"
         completedIcon={state.gameMode && <state.gameMode.icon size={24} />}
       />
       <Stepper.Step
-        label="You"
+        label="Your Character"
         description="Select your class and specialization"
         color="blue"
         completedIcon={
@@ -67,8 +56,7 @@ export default function StepperComponent() {
       <Stepper.Step
         label="Teamates"
         description="Choose teamates classes and specializations"
-        color={disableTeammateStep ? "red" : "blue"}
-        disabled={disableTeammateStep}
+        color="blue"
         completedIcon={<IconThumbUp size={24} />}
       />
 

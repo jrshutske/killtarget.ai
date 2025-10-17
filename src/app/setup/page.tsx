@@ -6,19 +6,19 @@ import ClassSelection from "./classSelection";
 import GameModeSelection from "./gameModeSelection";
 import { AppShell, Burger } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import styles from "./main.module.css";
+import styles from "./setup.module.css";
 import { SetupSteps } from "@/types/SetupSteps";
 import ReviewSelection from "./reviewSelection";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import KillTarget from "./killTarget";
 import { SetupContext, useSetupState } from "@/hooks/useSetupState";
-import SubmitButton from "@/components/SubmitButton";
 import Link from "next/link";
+import NavigationButton from "@/components/NavigationButton";
 
 // Step titles mapping
 const STEP_TITLES: Record<SetupSteps, string> = {
   [SetupSteps.GameMode]: "Game Mode",
-  [SetupSteps.ClassSelection]: "You",
+  [SetupSteps.ClassSelection]: "Your Character",
   [SetupSteps.TeammateSelection]: "Teammates",
   [SetupSteps.OpponentSelection]: "Opponents",
   [SetupSteps.ReviewSelection]: "Review",
@@ -39,6 +39,7 @@ export default function Page() {
   const [opened, { toggle }] = useDisclosure();
   const setupState = useSetupState();
   const { state } = setupState;
+
   // Disable right-click context menu
   useEffect(() => {
     const handleContextMenu = (e: Event) => e.preventDefault();
@@ -66,19 +67,22 @@ export default function Page() {
           <span className={styles.logoDesktop}>
             <Link href="/">killtarget.ai</Link>
           </span>
-          <span className={styles.sectionHeader}>{currentTitle}</span>
+          <ThemeToggle />
         </AppShell.Header>
 
         <AppShell.Navbar className={styles.navbar}>
           <StepperComponent />
-          <ThemeToggle />
         </AppShell.Navbar>
 
         <AppShell.Main className={styles.mainContent}>
+          <div className={styles.sectionHeader}>
+            <NavigationButton direction="left" />
+            <span className={styles.sectionHeaderText}>{currentTitle}</span>
+            <NavigationButton direction="right" />
+          </div>
           <div className={styles.scrollableArea}>
             <CurrentComponent />
           </div>
-          <SubmitButton step={state.active} />
         </AppShell.Main>
       </AppShell>
     </SetupContext.Provider>

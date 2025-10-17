@@ -2,7 +2,6 @@ import { IconUser, IconUsersGroup, IconUsers } from "@tabler/icons-react";
 
 // GameMode.ts - enum for validation
 export enum GameModeType {
-  SOLO,
   DUO,
   TRIO,
 }

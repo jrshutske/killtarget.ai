@@ -1,5 +1,5 @@
 "use client";
-import { Button, useMantineColorScheme } from "@mantine/core";
+import { useMantineColorScheme } from "@mantine/core";
 import { IconSun, IconMoon } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 import styles from "@/app/page.module.css";
@@ -13,15 +13,18 @@ export function ThemeToggle() {
     setMounted(true);
   }, []);
 
-  return (
-    <Button
-      className={styles.themeToggle}
+  if (!mounted) return null;
+  return colorScheme === "dark" ? (
+    <IconSun
+      size={30}
       onClick={() => toggleColorScheme()}
-      variant="default"
-      size="lg"
-      aria-label="Toggle color scheme"
-    >
-      {mounted ? colorScheme === "dark" ? <IconSun /> : <IconMoon /> : null}
-    </Button>
+      className={styles.themeToggle}
+    />
+  ) : (
+    <IconMoon
+      size={30}
+      onClick={() => toggleColorScheme()}
+      className={styles.themeToggle}
+    />
   );
 }

@@ -1,5 +1,5 @@
 import { Image } from "@mantine/core";
-import styles from "./main.module.css";
+import styles from "./setup.module.css";
 import { GAME_MODE_DUO, GAME_MODE_TRIO } from "@/types/GameMode";
 import { useSetupContext } from "@/hooks/useSetupState";
 
