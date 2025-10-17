@@ -64,9 +64,7 @@ export default function Page() {
       >
         <AppShell.Header className={styles.header}>
           <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="xl" />
-          <span className={styles.logoDesktop}>
-            <Link href="/">killtarget.ai</Link>
-          </span>
+          <Link href="/">killtarget.ai</Link>
           <ThemeToggle />
         </AppShell.Header>
 
